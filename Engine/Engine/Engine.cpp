@@ -127,6 +127,13 @@ namespace Wanted
 		return *instance;
 	}
 
+	void Engine::Shutdown()
+	{
+		std::cout << "Engine has been shutdown..." << std::endl;
+
+		Util::TurnOnCursor();
+	}
+
 	void Engine::LoadSettings()
 	{
 		FILE* file = nullptr;
