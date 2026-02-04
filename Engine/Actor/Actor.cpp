@@ -53,6 +53,23 @@ namespace Wanted
 		Engine::Get().Quit();
 	}
 
+	bool Actor::TestIntersect(const Actor* const other)
+	{
+		// AABB(Axis Aligned Bounding Box)
+		// 이 프로젝트의 경우는 y는 크기가 같으므로 x좌표만 고려
+		int xMin = position.x;
+		int xMax = position.x + width - 1;
+
+		// 충돌을 비교할 다른 액터의 x좌표 정보
+		int otherXMin = other->GetPosition().x;
+		int otherXMax = other->position.x + other->width - 1; // 같은 클래스끼린 접근 허용
+
+		// 안겹치는 조건 확인: 아예 떨어져있는 경우
+		if (otherXMax < xMin || xMax < otherXMin || position.y == other->position.y) return false;
+
+		return true;
+	}
+
 	void Actor::SetPosition(const Vector2& newPosition)
 	{
 		// 변경하려는 위치가 현재 위치와 같으면 건너뜀
