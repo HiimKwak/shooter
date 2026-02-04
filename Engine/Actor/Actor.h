@@ -50,6 +50,8 @@ namespace Wanted
 
 		inline int GetSortingOrder() const { return sortingOrder; }
 
+		inline int GetWidth() const { return width; }
+
 	protected:
 		// check whether begin play has been called
 		bool hasBegunPlay = false;
@@ -63,6 +65,9 @@ namespace Wanted
 		// 그려질 문자(이미지)
 		char* image = nullptr;
 
+		// 문자열 길이
+		int width = 0;
+
 		Color color = Color::White;
 
 		// Ownership
@@ -71,7 +76,6 @@ namespace Wanted
 		// 그리기 우선 순위(z-order/z-index)
 		int sortingOrder = 0;
 
-	private:
 		// position
 		Vector2 position;
 	};

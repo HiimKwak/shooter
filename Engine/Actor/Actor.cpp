@@ -10,10 +10,10 @@ namespace Wanted
 	Actor::Actor(const char* image, const Vector2& position, Color color)
 		: position(position), color(color)
 	{
-		// RAII?
-		size_t length = strlen(image) + 1;
-		this->image = new char[length];
-		strcpy_s(this->image, length, image);
+		// q. RAII?
+		width = static_cast<int>(strlen(image));
+		this->image = new char[width + 1];
+		strcpy_s(this->image, width + 1, image);
 	}
 
 	Actor::~Actor()

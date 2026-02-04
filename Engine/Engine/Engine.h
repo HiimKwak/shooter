@@ -34,6 +34,11 @@ namespace  Wanted
 
 		static Engine& Get();
 
+		// 화면 너비 반환 함수
+		inline int GetWidth() const { return settings.width; }
+		// 화면 높이 반환 함수
+		inline int GetHeight() const { return settings.height; }
+
 	protected:
 		// 정리 함수
 		void Shutdown();
