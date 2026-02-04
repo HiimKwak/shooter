@@ -46,7 +46,7 @@ void Player::Tick(float deltaTime)
 	}
 	else if (fireMode == FireMode::Repeat)
 	{
-		if (Input::Get().GetKeyDown(VK_SPACE))
+		if (Input::Get().GetKey(VK_SPACE))
 			FireInterval();
 	}
 
