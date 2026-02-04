@@ -4,6 +4,7 @@
 #include "Util/Util.h"
 #include "Actor.h"
 #include "Render/Renderer.h"
+#include "Engine/Engine.h"
 
 namespace Wanted
 {
@@ -32,6 +33,24 @@ namespace Wanted
 	void Actor::Draw()
 	{
 		Renderer::Get().Submit(image, position, color, sortingOrder);
+	}
+
+	void Actor::Destroy()
+	{
+		// 삭제 플래그 설정
+		destroyRequested = true; // 다음 프레임에 삭제 예정
+
+		OnDestroy();
+	}
+
+	void Actor::OnDestroy()
+	{
+	}
+
+	void Actor::QuitGame()
+	{
+		// 엔진 종료 요청
+		Engine::Get().Quit();
 	}
 
 	void Actor::SetPosition(const Vector2& newPosition)

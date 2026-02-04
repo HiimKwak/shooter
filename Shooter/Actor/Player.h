@@ -20,5 +20,8 @@ private:
 	void MoveRight();
 	// 왼쪽 이동
 	void MoveLeft();
+
+	// 총알 발사 함수
+	void Fire();
 };
 

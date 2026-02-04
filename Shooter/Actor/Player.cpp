@@ -1,6 +1,8 @@
 #include "Player.h"
+#include "Actor/PlayerBullet.h"
 #include "Core/Input.h"
 #include "Engine/Engine.h"
+#include "Level/Level.h"
 
 Player::Player()
 	: super("<=A=>", Vector2::Zero, Color::Green)
@@ -19,12 +21,19 @@ void Player::Tick(float deltaTime)
 {
 	super::Tick(deltaTime);
 
+	// 종료 처리
+	if (Input::Get().GetKeyDown(VK_ESCAPE))
+		QuitGame();
+
 	// 좌우 방향키 입력처리
 	if (Input::Get().GetKey(VK_LEFT))
 		MoveLeft();
 	if (Input::Get().GetKey(VK_RIGHT))
 		MoveRight();
 
+	// space로 총알 발사
+	if (Input::Get().GetKeyDown(VK_SPACE))
+		Fire();
 }
 
 void Player::MoveRight()
@@ -46,4 +55,13 @@ void Player::MoveLeft()
 	if (position.x < 0)
 		position.x = 0;
 
+}
+
+void Player::Fire()
+{
+	// 위치 설정
+	Vector2 bulletPosition(position.x + (width / 2), position.y);
+
+	// 액터 생성
+	GetOwner()->AddNewActor(new PlayerBullet(bulletPosition));
 }

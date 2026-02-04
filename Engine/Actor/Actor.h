@@ -26,6 +26,16 @@ namespace Wanted
 		virtual void Tick(float deltaTime);
 		virtual void Draw();
 
+		// 삭제 요청 함수
+		void Destroy();
+
+		// 삭제될 때 호출될 이벤트 함수
+		// e.g. 충돌한 액터를 삭제해야할 때 추가로 처리해줘야하는 로직 담기 함수
+		virtual void OnDestroy();
+
+		// 게임 종료 함수
+		void QuitGame();
+
 		// 위치 변경 및 읽기
 		void SetPosition(const Vector2& newPosition);
 		inline Vector2 GetPosition()const { return position; }
